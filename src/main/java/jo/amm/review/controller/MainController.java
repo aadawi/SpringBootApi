@@ -24,6 +24,11 @@ public class MainController {
     private UserRepository userRepository;
     private ObjectMapper mapper = new ObjectMapper();
 
+    @GetMapping(value = {"/test"})
+    public String test() {
+        return "test";
+    }
+
     @GetMapping(value = {"/", "/{message}"})
     public ResponseEntity<?> testApp(@PathVariable Optional<String> message) {
         return ResponseEntity.ok(userRepository.findAll());
