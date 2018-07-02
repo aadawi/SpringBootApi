@@ -2,7 +2,7 @@ package jo.amm.review.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jo.amm.review.model.User;
+import jo.amm.review.model.Users;
 import jo.amm.review.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -39,11 +39,11 @@ public class MainController {
         String message = "WOW it's working as will id: " + requestDTO.getId();
 
         if (requestDTO.getBody() instanceof ArrayList) {
-            List<User> users = mapper.convertValue(requestDTO.getBody(), new TypeReference<List<User>>(){});
+            List<Users> users = mapper.convertValue(requestDTO.getBody(), new TypeReference<List<Users>>(){});
             userRepository.saveAll(users);
         } else {
-            User user = mapper.convertValue(requestDTO.getBody(), User.class);
-            userRepository.save(user);
+            Users users = mapper.convertValue(requestDTO.getBody(), Users.class);
+            userRepository.save(users);
         }
 
         ResponseDTO responseDTO = new ResponseDTO("0", message);
